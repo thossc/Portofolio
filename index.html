@@ -17,52 +17,16 @@
         body {
             background-color: #36393f;
             color: #dcddde;
-            display: flex;
             min-height: 100vh;
-            overflow-x: hidden;
         }
         
-        /* SIDEBAR NAVIGATION */
+        /* SIDEBAR NAVIGATION - Mobile: hidden, Desktop: visible */
         .sidebar {
-            width: 70px;
-            background-color: #202225;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 12px;
-            flex-shrink: 0;
+            display: none;
         }
         
-        .nav-item {
-            width: 48px;
-            height: 48px;
-            background-color: #36393f;
-            border-radius: 0;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #dcddde;
-            font-size: 18px;
-            cursor: pointer;
-            border: 1px solid #202225;
-            transition: background-color 0.1s;
-        }
-        
-        .nav-item:hover {
-            background-color: #3a3d42;
-        }
-        
-        .nav-item.active {
-            background-color: #5865f2;
-            color: white;
-        }
-        
-        .divider {
-            width: 32px;
-            height: 2px;
-            background-color: #2d2f34;
-            margin: 8px 0;
+        .mobile-header {
+            display: none;
         }
         
         /* MAIN CONTAINER */
@@ -198,6 +162,8 @@
             display: flex;
             border-bottom: 1px solid #202225;
             background-color: #2f3136;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
         
         .tab {
@@ -207,6 +173,8 @@
             cursor: pointer;
             font-weight: 500;
             border-right: 1px solid #202225;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         
         .tab.active {
@@ -363,10 +331,12 @@
             justify-content: center;
             margin-right: 16px;
             font-size: 20px;
+            flex-shrink: 0;
         }
         
         .contact-details {
             flex: 1;
+            min-width: 0;
         }
         
         .contact-action {
@@ -376,6 +346,7 @@
             padding: 8px 16px;
             cursor: pointer;
             font-weight: 600;
+            flex-shrink: 0;
         }
         
         .contact-action:hover {
@@ -397,9 +368,136 @@
             height: 12px;
             background-color: #faa81a;
             margin-right: 10px;
+            flex-shrink: 0;
         }
         
-        /* RESPONSIVE */
+        /* MOBILE NAVIGATION */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #202225;
+            border-top: 1px solid #36393f;
+            z-index: 1000;
+        }
+        
+        .mobile-nav-items {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+        }
+        
+        .mobile-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #b9bbbe;
+            text-decoration: none;
+            font-size: 12px;
+            flex: 1;
+            padding: 8px 0;
+        }
+        
+        .mobile-nav-item i {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+        
+        .mobile-nav-item.active {
+            color: #5865f2;
+        }
+        
+        /* MOBILE HEADER */
+        .mobile-header {
+            display: none;
+            background-color: #202225;
+            padding: 15px 20px;
+            border-bottom: 1px solid #36393f;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            color: #dcddde;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .mobile-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+        }
+        
+        /* MOBILE MENU */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #202225;
+            z-index: 2000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            color: #dcddde;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .mobile-menu-item {
+            padding: 15px;
+            background-color: #36393f;
+            border: 1px solid #202225;
+            color: #dcddde;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+        }
+        
+        .mobile-menu-item i {
+            margin-right: 15px;
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+        }
+        
+        .mobile-menu-item.active {
+            background-color: #5865f2;
+            color: white;
+        }
+        
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1200px) {
+            .profile-section {
+                flex: 0 0 350px;
+            }
+        }
+        
         @media (max-width: 1000px) {
             .content {
                 flex-direction: column;
@@ -413,17 +511,192 @@
             .gallery-grid {
                 grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             }
+            
+            .art-types {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 768px) {
-            .sidebar {
-                width: 60px;
+            /* Show mobile navigation */
+            .mobile-header {
+                display: flex;
             }
             
-            .nav-item {
-                width: 42px;
-                height: 42px;
+            .mobile-nav {
+                display: block;
+            }
+            
+            /* Hide sidebar */
+            .sidebar {
+                display: none;
+            }
+            
+            /* Adjust container */
+            .container {
+                flex-direction: column;
+            }
+            
+            .content {
+                padding: 15px;
+                gap: 15px;
+                margin-top: 60px;
+                margin-bottom: 60px;
+            }
+            
+            /* Profile section adjustments */
+            .profile-section {
+                width: 100%;
+            }
+            
+            .profile-image-container {
+                height: 280px;
+            }
+            
+            .profile-info {
+                padding: 20px;
+            }
+            
+            /* Main content adjustments */
+            .main-content {
+                min-height: auto;
+            }
+            
+            .section-header {
+                padding: 14px 20px;
+                font-size: 15px;
+            }
+            
+            .section-content {
+                padding: 20px;
+            }
+            
+            /* Tabs adjustments */
+            .tab-container {
+                overflow-x: auto;
+            }
+            
+            .tab {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+            
+            /* Gallery adjustments */
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 12px;
+            }
+            
+            .gallery-item {
+                height: 150px;
+            }
+            
+            /* Contact item adjustments */
+            .contact-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            
+            .contact-icon {
+                margin-right: 0;
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            
+            .contact-details {
+                width: 100%;
+            }
+            
+            .contact-action {
+                width: 100%;
+                padding: 10px;
+            }
+            
+            /* About text adjustments */
+            .about-text {
+                font-size: 15px;
+            }
+            
+            .intro-box {
+                padding: 16px;
+                margin-bottom: 20px;
+            }
+            
+            /* Art type adjustments */
+            .art-type {
+                padding: 16px;
+            }
+            
+            .art-type-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .art-icon {
+                margin-right: 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .content {
+                padding: 10px;
+                margin-top: 50px;
+                margin-bottom: 50px;
+            }
+            
+            .profile-image-container {
+                height: 240px;
+            }
+            
+            .nickname {
+                font-size: 22px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .gallery-item {
+                height: 140px;
+            }
+            
+            .tab {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+            
+            .section-header {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+            
+            .section-content {
+                padding: 16px;
+            }
+            
+            .info-value {
+                font-size: 15px;
+            }
+            
+            .contact-icon {
+                width: 36px;
+                height: 36px;
                 font-size: 16px;
+            }
+        }
+        
+        /* Small phones */
+        @media (max-width: 360px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-item {
+                height: 160px;
             }
             
             .tab-container {
@@ -431,35 +704,70 @@
             }
             
             .tab {
-                padding: 12px 16px;
                 flex: 1;
-                min-width: 120px;
+                min-width: 50%;
                 text-align: center;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Sidebar Navigation -->
+    <!-- Desktop Sidebar Navigation -->
     <div class="sidebar">
-        <div class="nav-item profile active">
+        <div class="nav-item profile active" data-tab="about">
             <i class="fas fa-palette"></i>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" data-tab="about">
             <i class="fas fa-home"></i>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" data-tab="gallery">
             <i class="fas fa-images"></i>
         </div>
         <div class="divider"></div>
-        <div class="nav-item">
+        <div class="nav-item" data-tab="animation">
             <i class="fas fa-film"></i>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" data-tab="contact">
             <i class="fas fa-shopping-cart"></i>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" data-tab="contact">
             <i class="fas fa-envelope"></i>
+        </div>
+    </div>
+    
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="mobile-title">Thosphere</div>
+        <div style="width: 40px;"></div> <!-- Spacer for alignment -->
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <h2 style="color: white;">Menu</h2>
+            <button class="mobile-menu-close" id="mobileMenuClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-items">
+            <a href="#" class="mobile-menu-item active" data-tab="about">
+                <i class="fas fa-user"></i> About Me
+            </a>
+            <a href="#" class="mobile-menu-item" data-tab="gallery">
+                <i class="fas fa-images"></i> Art Gallery
+            </a>
+            <a href="#" class="mobile-menu-item" data-tab="animation">
+                <i class="fas fa-film"></i> Animation
+            </a>
+            <a href="#" class="mobile-menu-item" data-tab="contact">
+                <i class="fas fa-envelope"></i> Contact & Commissions
+            </a>
+            <a href="mailto:thossc.art@gmail.com" class="mobile-menu-item">
+                <i class="fas fa-envelope"></i> Email Me
+            </a>
         </div>
     </div>
     
@@ -468,148 +776,4 @@
             <!-- Profile Section -->
             <div class="profile-section">
                 <div class="profile-image-container">
-                    <img src="https://cdn.discordapp.com/avatars/1191240287385813073/f2fe32ce4fb32a6839abfb9866ca2900.png?size=4096" alt="Artist Profile" class="profile-image">
-                </div>
-                
-                <div class="profile-info">
-                    <div class="profile-name">
-                        <span class="nickname">Thosphere</span>
-                        <span class="badge">ARTIST</span>
-                    </div>
-                    
-                    <div class="info-item">
-                        <div class="info-label">Real Name</div>
-                        <div class="info-value">Arufian R.E</div>
-                    </div>
-                    
-                    <div class="info-item">
-                        <div class="info-label">Specializes In</div>
-                        <div class="info-value">
-                            <i class="fas fa-paint-brush"></i> Digital/Traditional Art
-                        </div>
-                    </div>
-                    
-                    <div class="info-item">
-                        <div class="info-label">Also Does</div>
-                        <div class="info-value">
-                            <i class="fas fa-film"></i> Animation
-                        </div>
-                    </div>
-                    
-                    <div class="info-item">
-                        <div class="info-label">Status</div>
-                        <div class="info-value">
-                            <i class="fas fa-circle" style="color: #faa81a; font-size: 12px;"></i> Commissions Closed - Drawing Tablet in Service
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Main Content -->
-            <div class="main-content">
-                <div class="tab-container">
-                    <div class="tab active" data-tab="about">About Me</div>
-                    <div class="tab" data-tab="gallery">Art Gallery</div>
-                    <div class="tab" data-tab="animation">Animation</div>
-                    <div class="tab" data-tab="contact">Contact & Commissions</div>
-                </div>
-                
-                <!-- About Section -->
-                <div class="tab-content active" id="about">
-                    <div class="section-header">
-                        <i class="fas fa-user"></i> About Me
-                    </div>
-                    <div class="section-content">
-                        <div class="intro-box">
-                            <p class="about-text">
-                                Hi, I'm <span class="highlight">Thosphere, also known as Thossc.</span>
-                            </p>
-                            <br>
-                            <p class="about-text">
-                                I do <span class="highlight">digital/traditional art</span> and I'm some sort of an <span class="highlight">animator</span>.
-                            </p>
-                            <br>
-                            <p class="about-text">
-                                So contact me if you want<br>
-                                ⤷ <a href="mailto:thossc.art@gmail.com" class="email-link">thossc.art@gmail.com</a>
-                            </p>
-                            <br>
-                            <p class="about-text">
-                                Feel free to DM me anything.
-                            </p>
-                        </div>
-                        
-                        <div class="art-types">
-                            <div class="art-type">
-                                <div class="art-type-header">
-                                    <div class="art-icon">
-                                        <i class="fas fa-desktop"></i>
-                                    </div>
-                                    <div class="art-type-title">Digital Art</div>
-                                </div>
-                                <p class="about-text">
-                                    Creating illustrations, character designs, and digital paintings using tools like Photoshop, Clip Studio Paint, and Procreate.
-                                </p>
-                            </div>
-                            
-                            <div class="art-type">
-                                <div class="art-type-header">
-                                    <div class="art-icon">
-                                        <i class="fas fa-paint-brush"></i>
-                                    </div>
-                                    <div class="art-type-title">Traditional Art</div>
-                                </div>
-                                <p class="about-text">
-                                    Working with physical mediums including watercolor, acrylics, ink, and pencils to create original artwork.
-                                </p>
-                            </div>
-                            
-                            <div class="art-type">
-                                <div class="art-type-header">
-                                    <div class="art-icon">
-                                        <i class="fas fa-film"></i>
-                                    </div>
-                                    <div class="art-type-title">Animation</div>
-                                </div>
-                                <p class="about-text">
-                                    Bringing characters and stories to life through frame-by-frame animation, motion graphics, and short animated sequences.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Gallery Section -->
-                <div class="tab-content" id="gallery">
-                    <div class="section-header">
-                        <i class="fas fa-images"></i> Art Gallery
-                    </div>
-                    <div class="section-content">
-                        <div class="gallery-grid">
-                            <div class="gallery-item">
-                                <img src="https://images.unsplash.com/photo-1578632749014-ca77efd052eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Character Design" class="gallery-image">
-                                <div class="gallery-overlay">
-                                    <div class="gallery-title">Character Design</div>
-                                </div>
-                            </div>
-                            <div class="gallery-item">
-                                <img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Concept Art" class="gallery-image">
-                                <div class="gallery-overlay">
-                                    <div class="gallery-title">Concept Art</div>
-                                </div>
-                            </div>
-                            <div class="gallery-item">
-                                <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Ink Illustration" class="gallery-image">
-                                <div class="gallery-overlay">
-                                    <div class="gallery-title">Ink Illustration</div>
-                                </div>
-                            </div>
-                            <div class="gallery-item">
-                                <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Portrait" class="gallery-image">
-                                <div class="gallery-overlay">
-                                    <div class="gallery-title">Portrait</div>
-                                </div>
-                            </div>
-                            <div class="gallery-item">
-                                <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Watercolor Art" class="gallery-image">
-                
+                    <img src="https://cdn.dis
