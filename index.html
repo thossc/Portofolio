@@ -3,164 +3,774 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thosphere | Artist & Animator</title>
+    <title>Thosphere | Small Artist, Good Animator & Designer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #36393f; color: #dcddde; min-height: 100vh; display: flex; }
-        .sidebar { width: 70px; background-color: #202225; display: flex; flex-direction: column; align-items: center; padding-top: 12px; flex-shrink: 0; }
-        .nav-item { width: 48px; height: 48px; background-color: #36393f; border-radius: 0; margin-bottom: 8px; display: flex; align-items: center; justify-content: center; color: #dcddde; font-size: 18px; cursor: pointer; border: 1px solid #202225; transition: background-color 0.1s; }
-        .nav-item:hover { background-color: #3a3d42; }
-        .nav-item.active { background-color: #5865f2; color: white; }
-        .divider { width: 32px; height: 2px; background-color: #2d2f34; margin: 8px 0; }
-        .container { display: flex; width: 100%; min-height: 100vh; }
-        .content { flex: 1; display: flex; padding: 20px; gap: 20px; overflow: auto; }
-        .profile-section { flex: 0 0 380px; background-color: #2f3136; border: 1px solid #202225; display: flex; flex-direction: column; height: fit-content; }
-        .profile-image-container { height: 320px; overflow: hidden; border-bottom: 1px solid #202225; position: relative; }
-        .profile-image { width: 100%; height: 100%; object-fit: cover; }
-        .profile-info { padding: 24px; }
-        .profile-name { display: flex; align-items: center; margin-bottom: 20px; }
-        .nickname { font-size: 26px; font-weight: 700; color: white; }
-        .badge { background-color: #ed4245; color: white; font-size: 11px; padding: 3px 8px; margin-left: 10px; font-weight: 600; }
-        .info-item { margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid #40444b; }
-        .info-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .info-label { font-size: 11px; color: #b9bbbe; text-transform: uppercase; margin-bottom: 5px; letter-spacing: 0.5px; font-weight: 600; }
-        .info-value { font-size: 16px; color: white; display: flex; align-items: center; }
-        .info-value i { margin-right: 8px; font-size: 14px; }
-        .main-content { flex: 1; background-color: #2f3136; border: 1px solid #202225; display: flex; flex-direction: column; min-height: 600px; }
-        .section-header { background-color: #36393f; padding: 16px 24px; border-bottom: 1px solid #202225; font-size: 16px; font-weight: 600; color: white; display: flex; align-items: center; }
-        .section-header i { margin-right: 10px; font-size: 16px; }
-        .section-content { padding: 24px; flex: 1; overflow-y: auto; }
-.tab-container { display: flex; border-bottom: 1px solid #202225; background-color: #2f3136; }
-.tab { padding: 14px 24px; background-color: #2f3136; color: #b9bbbe; cursor: pointer; font-weight: 500; border-right: 1px solid #202225; }
-.tab.active { background-color: #36393f; color: white; border-bottom: 2px solid #ed4245; }
-.tab-content { display: none; flex-direction: column; height: 100%; }
-.tab-content.active { display: flex; }
-.about-text { line-height: 1.6; color: #dcddde; font-size: 16px; }
-.highlight { color: #ed4245; font-weight: 600; }
-.email-link { color: #5865f2; text-decoration: none; font-weight: 600; }
-.email-link:hover { text-decoration: underline; }
-.intro-box { background-color: #36393f; border: 1px solid #202225; padding: 20px; margin-bottom: 24px; }
-.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
-.gallery-item { height: 180px; background-color: #36393f; border: 1px solid #202225; overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative; }
-.gallery-item:hover .gallery-overlay { opacity: 1; }
-.gallery-image { width: 100%; height: 100%; object-fit: cover; }
-.gallery-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(237, 66, 69, 0.85); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
-.gallery-title { color: white; font-weight: 600; font-size: 14px; }
-.art-types { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin-top: 20px; }
-.art-type { background-color: #36393f; border: 1px solid #202225; padding: 20px; }
-.art-type-header { display: flex; align-items: center; margin-bottom: 12px; }
-.art-icon { width: 40px; height: 40px; background-color: #ed4245; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-size: 18px; }
-.art-type-title { font-weight: 600; color: white; font-size: 18px; }
-.contact-list { display: flex; flex-direction: column; gap: 16px; }
-.contact-item { display: flex; align-items: center; padding: 16px; background-color: #36393f; border: 1px solid #202225; }
-.contact-icon { width: 48px; height: 48px; background-color: #ed4245; display: flex; align-items: center; justify-content: center; margin-right: 16px; font-size: 20px; }
-.contact-details { flex: 1; }
-.contact-action { background-color: #5865f2; color: white; border: none; padding: 8px 16px; cursor: pointer; font-weight: 600; }
-.contact-action:hover { background-color: #4752c4; }
-.commission-status { display: flex; align-items: center; margin-bottom: 20px; padding: 12px; background-color: #36393f; border: 1px solid #202225; }
-.status-indicator { width: 12px; height: 12px; background-color: #faa81a; margin-right: 10px; }
-        @media (max-width: 1000px) {
-            .content { flex-direction: column; }
-            .profile-section { flex: 1; max-width: 100%; }
-            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
-            .art-types { grid-template-columns: 1fr; }
+        /* RESET & BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            .sidebar { display: none; }
-            .container { margin-top: 60px; margin-bottom: 60px; }
-            .content { padding: 15px; gap: 15px; }
-            .profile-section { width: 100%; }
-            .profile-image-container { height: 280px; }
-            .profile-info { padding: 20px; }
-            .tab { padding: 12px 16px; font-size: 14px; }
-            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
-            .gallery-item { height: 150px; }
+        
+        body {
+            background-color: #36393f;
+            color: #dcddde;
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* SIDEBAR NAVIGATION */
+        .sidebar {
+            width: 70px;
+            background-color: #202225;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 12px;
+        }
+        
+        .nav-item {
+            width: 48px;
+            height: 48px;
+            background-color: #36393f;
+            border-radius: 0;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #dcddde;
+            font-size: 20px;
+            cursor: pointer;
+            border: 1px solid #202225;
+            transition: background-color 0.2s;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            background-color: #5865f2;
+            border-radius: 0;
+        }
+        
+        .nav-item.profile {
+            background-color: #5865f2;
+        }
+        
+        .divider {
+            width: 32px;
+            height: 2px;
+            background-color: #36393f;
+            margin: 8px 0;
+        }
+        
+        /* MAIN CONTENT */
+        .container {
+            display: flex;
+            width: 100%;
+        }
+        
+        .content {
+            flex: 1;
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+        
+        /* PROFILE SECTION */
+        .profile-section {
+            flex: 1;
+            background-color: #2f3136;
+            border: 1px solid #202225;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+        }
+        
+        .profile-image-container {
+            height: 320px;
+            overflow: hidden;
+            border-bottom: 1px solid #202225;
+        }
+        
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-info {
+            padding: 24px;
+        }
+        
+        .profile-name {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .nickname {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .badge {
+            background-color: #ed4245;
+            color: white;
+            font-size: 12px;
+            padding: 3px 8px;
+            margin-left: 10px;
+        }
+        
+        .tagline {
+            color: #dcddde;
+            font-size: 16px;
+            margin-bottom: 20px;
+            font-style: italic;
+            border-left: 3px solid #5865f2;
+            padding-left: 12px;
+        }
+        
+        .info-item {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #40444b;
+        }
+        
+        .info-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .info-label {
+            font-size: 12px;
+            color: #b9bbbe;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+        
+        .info-value {
+            font-size: 16px;
+            color: white;
+        }
+        
+        /* MAIN CONTENT AREA */
+        .main-content {
+            flex: 2;
+            background-color: #2f3136;
+            border: 1px solid #202225;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .section-header {
+            background-color: #36393f;
+            padding: 16px 20px;
+            border-bottom: 1px solid #202225;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .section-content {
+            padding: 24px;
+            flex: 1;
+            overflow-y: auto;
+        }
+        
+        .tab-container {
+            display: flex;
+            border-bottom: 1px solid #202225;
+        }
+        
+        .tab {
+            padding: 14px 24px;
+            background-color: #2f3136;
+            color: #b9bbbe;
+            cursor: pointer;
+            font-weight: 500;
+            border-right: 1px solid #202225;
+        }
+        
+        .tab.active {
+            background-color: #36393f;
+            color: white;
+            border-bottom: 2px solid #ed4245;
+        }
+        
+        .tab-content {
+            display: none;
+            flex-direction: column;
+        }
+        
+        .tab-content.active {
+            display: flex;
+        }
+        
+        /* ABOUT SECTION */
+        .about-text {
+            line-height: 1.6;
+            color: #dcddde;
+            font-size: 16px;
+        }
+        
+        .highlight {
+            color: #ed4245;
+            font-weight: 600;
+        }
+        
+        .email-link {
+            color: #5865f2;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .email-link:hover {
+            text-decoration: underline;
+        }
+        
+        .artist-statement {
+            background-color: #36393f;
+            border: 1px solid #202225;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        
+        .quote {
+            font-style: italic;
+            color: #b9bbbe;
+            border-left: 3px solid #ed4245;
+            padding-left: 15px;
+            margin: 20px 0;
+        }
+        
+        /* GALLERY */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        
+        .gallery-item {
+            height: 180px;
+            background-color: #36393f;
+            border: 1px solid #202225;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b9bbbe;
+            position: relative;
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .gallery-placeholder {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .gallery-placeholder i {
+            font-size: 36px;
+            margin-bottom: 10px;
+            display: block;
+            color: #72767d;
+        }
+        
+        /* SKILLS */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 16px;
+        }
+        
+        .skill-item {
+            background-color: #36393f;
+            border: 1px solid #202225;
+            padding: 20px;
+        }
+        
+        .skill-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .skill-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #ed4245;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 18px;
+        }
+        
+        .skill-title {
+            font-weight: 600;
+            color: white;
+            font-size: 18px;
+        }
+        
+        /* CONTACT */
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            background-color: #36393f;
+            border: 1px solid #202225;
+        }
+        
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background-color: #ed4245;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            font-size: 20px;
+        }
+        
+        .contact-details {
+            flex: 1;
+        }
+        
+        .contact-action {
+            background-color: #5865f2;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .contact-action:hover {
+            background-color: #4752c4;
+        }
+        
+        /* COMMISSION INFO */
+        .commission-status {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 12px;
+            background-color: #36393f;
+            border: 1px solid #202225;
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            background-color: #faa81a;
+            margin-right: 10px;
+        }
+        
+        /* SMALL ARTIST BADGE */
+        .small-artist-badge {
+            background-color: #36393f;
+            border: 1px solid #202225;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .small-artist-badge .title {
+            color: #ed4245;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .small-artist-badge .subtitle {
+            color: #b9bbbe;
+            font-size: 14px;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 1000px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .profile-section {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Sidebar Navigation -->
     <div class="sidebar">
-        <div class="nav-item profile active" data-tab="about"><i class="fas fa-palette"></i></div>
-        <div class="nav-item" data-tab="about"><i class="fas fa-home"></i></div>
-        <div class="nav-item" data-tab="gallery"><i class="fas fa-images"></i></div>
+        <div class="nav-item profile active">
+            <i class="fas fa-palette"></i>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-home"></i>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-images"></i>
+        </div>
         <div class="divider"></div>
-        <div class="nav-item" data-tab="animation"><i class="fas fa-film"></i></div>
-        <div class="nav-item" data-tab="contact"><i class="fas fa-shopping-cart"></i></div>
-        <div class="nav-item" data-tab="contact"><i class="fas fa-envelope"></i></div>
+        <div class="nav-item">
+            <i class="fas fa-film"></i>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-shopping-cart"></i>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-envelope"></i>
+        </div>
     </div>
     
     <div class="container">
         <div class="content">
+            <!-- Profile Section -->
             <div class="profile-section">
                 <div class="profile-image-container">
-                    <img src="https://cdn.discordapp.com/avatars/1191240287385813073/f2fe32ce4fb32a6839abfb9866ca2900.png?size=4096" alt="Profile" class="profile-image">
+                    <img src="https://cdn.discordapp.com/avatars/1191240287385813073/f2fe32ce4fb32a6839abfb9866ca2900.png?size=4096" alt="Profile Image" class="profile-image">
                 </div>
+                
                 <div class="profile-info">
-                    <div class="profile-name"><span class="nickname">Thosphere</span><span class="badge">ARTIST</span></div>
-                    <div class="info-item"><div class="info-label">Real Name</div><div class="info-value">Arufian R.E</div></div>
-                    <div class="info-item"><div class="info-label">Specializes In</div><div class="info-value"><i class="fas fa-paint-brush"></i> Digital/Traditional Art</div></div>
-                    <div class="info-item"><div class="info-label">Also Does</div><div class="info-value"><i class="fas fa-film"></i> Animation</div></div>
-                    <div class="info-item"><div class="info-label">Status</div><div class="info-value"><i class="fas fa-circle" style="color: #faa81a; font-size: 12px;"></i> Commissions Closed - Tablet in Service</div></div>
+                    <div class="profile-name">
+                        <span class="nickname">Thosphere</span>
+                        <span class="badge">SMALL ARTIST</span>
+                    </div>
+                    
+                    <div class="tagline">
+                        "Small artist, but good. Animating and designing."
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-label">Real Name</div>
+                        <div class="info-value">Arufian R.E (Thossc)</div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-label">Specializes In</div>
+                        <div class="info-value">Art, Animation & Design</div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-label">What I Do</div>
+                        <div class="info-value">Digital/Traditional Art, Character Design, 2D Animation</div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-label">Status</div>
+                        <div class="info-value">
+                            <i class="fas fa-circle" style="color: #faa81a; font-size: 12px;"></i> Learning & Growing - Open to small projects
+                        </div>
+                    </div>
+                    
+                    <div class="small-artist-badge">
+                        <div class="title">INDIE ARTIST</div>
+                        <div class="subtitle">No big studio, just passion and pixels</div>
+                    </div>
                 </div>
             </div>
             
+            <!-- Main Content -->
             <div class="main-content">
                 <div class="tab-container">
                     <div class="tab active" data-tab="about">About Me</div>
-                    <div class="tab" data-tab="gallery">Art Gallery</div>
+                    <div class="tab" data-tab="gallery">My Art</div>
                     <div class="tab" data-tab="animation">Animation</div>
-                    <div class="tab" data-tab="contact">Contact</div>
+                    <div class="tab" data-tab="contact">Contact & Commissions</div>
                 </div>
                 
+                <!-- About Section -->
                 <div class="tab-content active" id="about">
-                    <div class="section-header"><i class="fas fa-user"></i> About Me</div>
+                    <div class="section-header">About Me - The Small Artist</div>
                     <div class="section-content">
-                        <div class="intro-box">
-                            <p class="about-text">Hi, I'm <span class="highlight">Thosphere, also known as Thossc.</span></p><br>
-                            <p class="about-text">I do <span class="highlight">digital/traditional art</span> and I'm some sort of an <span class="highlight">animator</span>.</p><br>
-                            <p class="about-text">So contact me if you want<br>⤷ <a href="mailto:thossc.art@gmail.com" class="email-link">thossc.art@gmail.com</a></p><br>
-                            <p class="about-text">Feel free to DM me anything.</p>
+                        <div class="artist-statement">
+                            <p class="about-text">
+                                Hi, I'm <span class="highlight">Thosphere (Thossc)</span>.
+                            </p>
+                            <br>
+                            <p class="about-text">
+                                I'm just a <span class="highlight">small artist</span>, but <span class="highlight">good</span>. I spend my time <span class="highlight">animating and designing</span>.
+                            </p>
+                            <br>
+                            <p class="about-text">
+                                I'm not from a big art school or famous studio. I'm just someone who loves creating things and getting better every day.
+                            </p>
+                            <br>
+                            <div class="quote">
+                                "Small doesn't mean less. Sometimes the best art comes from humble beginnings."
+                            </div>
+                            <br>
+                            <p class="about-text">
+                                So contact me if you want<br>
+                                ⤷ <a href="mailto:thossc.art@gmail.com" class="email-link">thossc.art@gmail.com</a>
+                            </p>
+                            <br>
+                            <p class="about-text">
+                                Feel free to DM me anything. I'm always down to talk about art, animation, or just creative stuff in general.
+                            </p>
+                        </div>
+                        
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <div class="skill-icon">
+                                        <i class="fas fa-paint-brush"></i>
+                                    </div>
+                                    <div class="skill-title">Digital Art</div>
+                                </div>
+                                <p class="about-text">
+                                    Character designs, illustrations, fanart. Working with Clip Studio Paint, Photoshop, and occasionally Procreate.
+                                </p>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <div class="skill-icon">
+                                        <i class="fas fa-film"></i>
+                                    </div>
+                                    <div class="skill-title">2D Animation</div>
+                                </div>
+                                <p class="about-text">
+                                    Frame-by-frame animation, character animation loops, short animated clips. Learning and improving every day.
+                                </p>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <div class="skill-icon">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </div>
+                                    <div class="skill-title">Design</div>
+                                </div>
+                                <p class="about-text">
+                                    Character design, concept art, basic UI/UX. I enjoy creating characters and worlds that feel alive.
+                                </p>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <div class="skill-icon">
+                                        <i class="fas fa-heart"></i>
+                                    </div>
+                                    <div class="skill-title">Passion Projects</div>
+                                </div>
+                                <p class="about-text">
+                                    I take on projects I'm passionate about. Whether it's fanart of something I love or original characters.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
+                <!-- Gallery Section -->
                 <div class="tab-content" id="gallery">
-                    <div class="section-header"><i class="fas fa-images"></i> Art Gallery</div>
+                    <div class="section-header">My Art Gallery</div>
                     <div class="section-content">
+                        <p class="about-text" style="margin-bottom: 20px;">
+                            Here's some of my work. I'm still building my portfolio, so there's more to come!
+                        </p>
+                        
                         <div class="gallery-grid">
                             <div class="gallery-item">
-  <img src="https://i.imgur.com/zFf7VvZ.png" alt="Art" class="gallery-image">
-</div>
-
-<div class="gallery-item">
-  <img src="https://i.imgur.com/OyI01Ai.png" alt="Art" class="gallery-image">
-</div>
-
-<div class="gallery-item">
-  <img src="https://i.imgur.com/mu6Uq5E.jpg" alt="Art" class="gallery-image">
-</div>
-
-<div class="gallery-item">
-  <img src="https://i.imgur.com/npFSG2t.png" alt="Art" class="gallery-image">
-                  </div>
+                                <div class="gallery-placeholder">
+                                    <i class="fas fa-portrait"></i>
+                                    Character Design
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <div class="gallery-placeholder">
+                                    <i class="fas fa-palette"></i>
+                                    Digital Painting
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <div class="gallery-placeholder">
+                                    <i class="fas fa-drafting-compass"></i>
+                                    Concept Art
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <div class="gallery-placeholder">
+                                    <i class="fas fa-user"></i>
+                                    Portrait
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <div class="gallery-placeholder">
+                                    <i class="fas fa-pen-fancy"></i>
+                                    Illustration
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <div class="gallery-placeholder">
+                                    <i class="fas fa-magic"></i>
+                                    Fanart
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="small-artist-badge" style="margin-top: 30px;">
+                            <div class="title">WORK IN PROGRESS</div>
+                            <div class="subtitle">More art coming soon! Just a small artist doing their best.</div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="tab-content" id="contact">
-                    <div class="section-header"><i class="fas fa-envelope"></i> Contact</div>
+                <!-- Animation Section -->
+                <div class="tab-content" id="animation">
+                    <div class="section-header">Animation Work</div>
                     <div class="section-content">
+                        <p class="about-text" style="margin-bottom: 20px;">
+                            I love bringing characters to life through animation. Here's what I've been working on:
+                        </p>
+                        
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <div class="gallery-placeholder">
+                                    <i class="fas fa-play-circle"></i>
+                                    Character Animation
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <div class="gallery-placeholder">
+                                    <i class="fas fa-sync-alt"></i>
+                                    Animation Loop
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <div class="gallery-placeholder">
+                                    <i class="fas fa-running"></i>
+                                    Motion Study
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <div class="gallery-placeholder">
+                                    <i class="fas fa-video"></i>
+                                    Short Clip
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item" style="margin-top: 30px;">
+                            <div class="skill-header">
+                                <div class="skill-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="skill-title">My Animation Process</div>
+                            </div>
+                            <p class="about-text">
+                                1. Sketching keyframes<br>
+                                2. Rough animation pass<br>
+                                3. Clean-up and inbetweening<br>
+                                4. Coloring and effects<br>
+                                5. Final render
+                            </p>
+                            <br>
+                            <p class="about-text">
+                                I'm still learning, but I pour my heart into every frame. Animation is hard work, but seeing characters move makes it worth it.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Section -->
+                <div class="tab-content" id="contact">
+                    <div class="section-header">Contact & Small Commissions</div>
+                    <div class="section-content">
+                        <div class="commission-status">
+                            <div class="status-indicator"></div>
+                            <div>
+                                <strong>Status:</strong> Open to small projects & commissions
+                            </div>
+                        </div>
+                        
+                        <p class="about-text" style="margin-bottom: 20px;">
+                            As a small artist, I'm open to commissions that match my skill level and passion. Let's create something cool together!
+                        </p>
+                        
                         <div class="contact-list">
                             <div class="contact-item">
-                                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                                <div class="contact-details"><div class="info-label">Email</div><div class="info-value">thossc.art@gmail.com</div></div>
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <div class="info-label">Email</div>
+                                    <div class="info-value">thossc.art@gmail.com</div>
+                                </div>
                                 <button class="contact-action email-btn">Email Me</button>
                             </div>
+                            
                             <div class="contact-item">
-                                <div class="contact-icon" style="background-color: #5865f2;"><i class="fab fa-discord"></i></div>
-                                <div class="contact-details"><div class="info-label">Discord</div><div class="info-value">thosphere</div></div>
+                                <div class="contact-icon" style="background-color: #5865f2;">
+                                    <i class="fab fa-discord"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <div class="info-label">Discord</div>
+                                    <div class="info-value">thosphere</div>
+                                </div>
                                 <button class="contact-action copy-discord" style="background-color: #5865f2;">Copy Username</button>
                             </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon" style="background-color: #1da1f2;">
+                                    <i class="fab fa-twitter"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <div class="info-label">Twitter / X</div>
+                                    <div class="info-value">@thossc_</div>
+                                </div>
+                                <button class="contact-action twitter-btn" style="background-color: #1da1f2;">Follow</button>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon" style="background-color: #ff4500;">
+                                    <i class="fab fa-instagram"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <div class="info-label">Instagram</div>
+                                    <div class="info-value">@thossc._</div>
+                                </div>
+                                <button class="contact-action instagram-btn" style="background-color: #ff4500;">View Profile</button>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item" style="margin-top: 30px; background-color: #36393f; border: 1px solid #202225; padding: 20px;">
+                            <div class="skill-header">
+                                <div class="skill-icon">
+                                    <i class="fas fa-handshake"></i>
+                                </div>
+                                <div class="skill-title">Small Artist Commission Info</div>
+                            </div>
+                            <p class="about-text">
+                                <strong>What I can do:</strong> Character art, simple illustrations, small animations, character designs<br>
+                                <strong>What I'm learning:</strong> Complex animations, background art, comic pages<br>
+                                <strong>Turnaround:</strong> 1-2 weeks for simple pieces<br>
+                                <strong>Prices:</strong> Reasonable - I'm still building my portfolio<br>
+                                <strong>Communication:</strong> I'll keep you updated throughout the process
+                            </p>
+                            <br>
+                            <p class="about-text">
+                                I'm honest about my skill level. If a project is beyond my current abilities, I'll tell you upfront. But I'll always give it my best shot.
+                            </p>
+                        </div>
+                        
+                        <div class="small-artist-badge" style="margin-top: 30px;">
+                            <div class="title">SUPPORT SMALL ARTISTS</div>
+                            <div class="subtitle">Every big artist started small. Thanks for checking out my work!</div>
                         </div>
                     </div>
                 </div>
@@ -169,30 +779,49 @@
     </div>
 
     <script>
+        // Tab switching functionality
         document.addEventListener('DOMContentLoaded', function() {
             const tabs = document.querySelectorAll('.tab');
             const tabContents = document.querySelectorAll('.tab-content');
             
-            function switchTab(tabName) {
-                tabs.forEach(t => t.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-                document.querySelector(`.tab[data-tab="${tabName}"]`).classList.add('active');
-                document.getElementById(tabName).classList.add('active');
-            }
-            
             tabs.forEach(tab => {
                 tab.addEventListener('click', () => {
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    
+                    // Show corresponding tab content
                     const tabId = tab.getAttribute('data-tab');
-                    switchTab(tabId);
+                    document.getElementById(tabId).classList.add('active');
                 });
             });
             
+            // Navigation items interaction
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Copy Discord username functionality
             document.querySelectorAll('.copy-discord').forEach(button => {
                 button.addEventListener('click', function() {
-                    navigator.clipboard.writeText('thosphere');
+                    const tempInput = document.createElement('input');
+                    tempInput.value = 'thosphere';
+                    document.body.appendChild(tempInput);
+                    tempInput.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tempInput);
+                    
                     const originalText = this.textContent;
                     this.textContent = 'Copied!';
                     this.style.backgroundColor = '#3ba55d';
+                    
                     setTimeout(() => {
                         this.textContent = originalText;
                         this.style.backgroundColor = '#5865f2';
@@ -200,13 +829,21 @@
                 });
             });
             
+            // Email button
             document.querySelectorAll('.email-btn').forEach(button => {
                 button.addEventListener('click', function() {
                     window.location.href = 'mailto:thossc.art@gmail.com';
                 });
             });
             
-            switchTab('about');
+            // Social media buttons
+            document.querySelector('.twitter-btn').addEventListener('click', function() {
+                window.open('https://twitter.com/thossc_', '_blank');
+            });
+            
+            document.querySelector('.instagram-btn').addEventListener('click', function() {
+                window.open('https://instagram.com/thossc._', '_blank');
+            });
         });
     </script>
 </body>
